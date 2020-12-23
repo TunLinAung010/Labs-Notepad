@@ -1,0 +1,31 @@
+ansiblecopytest.txt  file2move.yml  secondfile.txt
+sillx@RV-WFH-032:/opt/test$ ansible-playbook file2move.yml
+
+PLAY [managenode01] *********************************************************************************************************************
+
+TASK [Gathering Facts] ******************************************************************************************************************
+[DEPRECATION WARNING]: Distribution Ubuntu 18.04 on host 140.238.224.131 should use /usr/bin/python3, but is using /usr/bin/python for
+backward compatibility with prior Ansible releases. A future Ansible release will default to using the discovered platform python for
+this host. See https://docs.ansible.com/ansible/2.9/reference_appendices/interpreter_discovery.html for more information. This feature
+will be removed in version 2.12. Deprecation warnings can be disabled by setting deprecation_warnings=False in ansible.cfg.
+ok: [140.238.224.131]
+
+TASK [copy file to remote host] *********************************************************************************************************
+changed: [140.238.224.131]
+
+PLAY RECAP ******************************************************************************************************************************
+140.238.224.131            : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+sillx@RV-WFH-032:/opt/test$
+sillx@RV-WFH-032:/opt/test$
+sillx@RV-WFH-032:/opt/test$ ls
+ansiblecopytest.txt  file2move.yml  secondfile.txt
+sillx@RV-WFH-032:/opt/test$ cat file2move.yml
+---
+- hosts: managenode01
+  tasks:
+    - name: copy file to remote host
+      copy:
+        src: /opt/test/secondfile.txt
+        dest: /opt/lll
+sillx@RV-WFH-032:/opt/test$
