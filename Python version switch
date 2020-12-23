@@ -1,0 +1,19 @@
+Ubuntu 20.04 have defualt python3 not include python2 so if you type #python command not found only have #python3 so let we setup to found #python command.
+
+
+Ubuntu 20.04 Python version switch manager
+=====================================================
+
+# ls /usr/bin/python*
+
+# sudo update-alternatives --list python
+
+# sudo update-alternatives --install /usr/bin/python python /usr/bin/python2 1
+
+# sudo update-alternatives --install /usr/bin/python python /usr/bin/python3 2
+
+# sudo update-alternatives --list python    ### Check lists
+
+# sudo update-alternatives --config python
+
+# python -V
