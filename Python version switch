@@ -17,3 +17,5 @@ Ubuntu 20.04 Python version switch manager
 # sudo update-alternatives --config python
 
 # python -V
+
+REF### https://linuxconfig.org/ubuntu-20-04-python-version-switch-manager
