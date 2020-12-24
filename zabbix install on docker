@@ -131,3 +131,10 @@ root@managenode:~#
 
 ###### ( Ref:: https://techexpert.tips/zabbix/zabbix-docker-installation-ubuntu-linux/ )
 
+On the login screen, use the default username and default password.
+
+• Default Username: Admin
+• Default Password: zabbix
+
+After a successful login, you will be sent to the Zabbix Dashboard.
+
