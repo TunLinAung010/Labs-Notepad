@@ -1,0 +1,23 @@
+root@RV-WFH-032:~# wget https://github.com/bcicen/ctop/releases/download/v0.7.1/ctop-0.7.1-linux-amd64  -O /usr/local/bin/ctop
+--2020-12-24 12:59:26--  https://github.com/bcicen/ctop/releases/download/v0.7.1/ctop-0.7.1-linux-amd64
+Resolving github.com (github.com)... 13.229.188.59
+Connecting to github.com (github.com)|13.229.188.59|:443... connected.
+HTTP request sent, awaiting response... 302 Found
+Location: https://github-production-release-asset-2e65be.s3.amazonaws.com/77419377/f77ea9c6-239d-11e8-8573-aa355288f0fe?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIWNJYAX4CSVEH53A%2F20201224%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20201224T062927Z&X-Amz-Expires=300&X-Amz-Signature=0a3a626f19a048b6bcc029bc39d275c7ec639e9c5aa2584e27117963f2df0223&X-Amz-SignedHeaders=host&actor_id=0&key_id=0&repo_id=77419377&response-content-disposition=attachment%3B%20filename%3Dctop-0.7.1-linux-amd64&response-content-type=application%2Foctet-stream [following]
+--2020-12-24 12:59:26--  https://github-production-release-asset-2e65be.s3.amazonaws.com/77419377/f77ea9c6-239d-11e8-8573-aa355288f0fe?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIWNJYAX4CSVEH53A%2F20201224%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20201224T062927Z&X-Amz-Expires=300&X-Amz-Signature=0a3a626f19a048b6bcc029bc39d275c7ec639e9c5aa2584e27117963f2df0223&X-Amz-SignedHeaders=host&actor_id=0&key_id=0&repo_id=77419377&response-content-disposition=attachment%3B%20filename%3Dctop-0.7.1-linux-amd64&response-content-type=application%2Foctet-stream
+Resolving github-production-release-asset-2e65be.s3.amazonaws.com (github-production-release-asset-2e65be.s3.amazonaws.com)... 52.216.93.19
+Connecting to github-production-release-asset-2e65be.s3.amazonaws.com (github-production-release-asset-2e65be.s3.amazonaws.com)|52.216.93.19|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 9740856 (9.3M) [application/octet-stream]
+Saving to: ‘/usr/local/bin/ctop’
+
+/usr/local/bin/ctop                100%[=============================================================>]   9.29M   139KB/s    in 96s
+
+2020-12-24 13:01:04 (99.6 KB/s) - ‘/usr/local/bin/ctop’ saved [9740856/9740856]
+
+root@RV-WFH-032:~# chmod +x /usr/local/bin/ctop
+root@RV-WFH-032:~#
+root@RV-WFH-032:~#
+root@RV-WFH-032:~#
+root@RV-WFH-032:~#
+root@RV-WFH-032:~# ctop
