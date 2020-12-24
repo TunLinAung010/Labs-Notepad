@@ -45,7 +45,11 @@ sillx@managenode:~$
 sillx@managenode:~$
 sillx@managenode:~$ sudo -i
 root@managenode:~#
-root@managenode:~#
+root@managenode:~# docker pull mysql
+root@managenode:~# docker pull zabbix/zabbix-server-mysql
+root@managenode:~# docker pull zabbix/zabbix-web-nginx-mysql
+root@managenode:~# docker pull zabbix/zabbix-java-gateway
+root@managenode:~# docker pull zabbix/zabbix-agent
 root@managenode:~#
 root@managenode:~#
 root@managenode:~#
