@@ -1,0 +1,126 @@
+     ┌────────────────────────────────────────────────────────────────────┐
+     │                        • MobaXterm 20.5 •                          │
+     │            (SSH client, X-server and networking tools)             │
+     │                                                                    │
+     │ → SSH session to sillx@140.238.224.131                             │
+     │   • SSH compression : v                                            │
+     │   • SSH-browser     : v                                            │
+     │   • X11-forwarding  : v  (remote display is forwarded through SSH) │
+     │   • DISPLAY         : v  (automatically set on remote server)      │
+     │                                                                    │
+     │ → For more info, ctrl+click on help or visit our website           │
+     └────────────────────────────────────────────────────────────────────┘
+
+Welcome to Ubuntu 18.04.5 LTS (GNU/Linux 5.3.0-1028-oracle x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+  System information as of Thu Dec 24 04:09:02 UTC 2020
+
+  System load:  0.04              Users logged in:        0
+  Usage of /:   0.1% of 18.93TB   IP address for ens3:    10.0.50.28
+  Memory usage: 12%               IP address for docker0: 172.17.0.1
+  Swap usage:   0%                IP address for cni0:    10.42.1.1
+  Processes:    278
+
+ * Introducing self-healing high availability clusters in MicroK8s.
+   Simple, hardened, Kubernetes for production, from RaspberryPi to DC.
+
+     https://microk8s.io/high-availability
+
+ * Canonical Livepatch is available for installation.
+   - Reduce system reboots and improve kernel security. Activate at:
+     https://ubuntu.com/livepatch
+
+40 packages can be updated.
+0 updates are security updates.
+
+
+*** System restart required ***
+Last login: Wed Dec 23 06:09:08 2020 from 185.133.212.218
+sillx@managenode:~$
+sillx@managenode:~$
+sillx@managenode:~$
+sillx@managenode:~$ sudo -i
+root@managenode:~#
+root@managenode:~#
+root@managenode:~#
+root@managenode:~#
+root@managenode:~#
+root@managenode:~#
+root@managenode:~# docker images
+REPOSITORY                               TAG                 IMAGE ID            CREATED             SIZE
+httpd                                    alpine              ee0260a87a86        2 months ago        55.5MB
+pierrecdn/phpipam                        latest              53f289755406        3 months ago        499MB
+zabbix/zabbix-agent                      latest              8afadfa32537        3 months ago        16.4MB
+zabbix/zabbix-server-mysql               latest              db3c8e9b20a1        3 months ago        67.2MB
+quay.io/vektorlab/ctop                   latest              c0d436400c49        3 months ago        13.4MB
+zabbix/zabbix-web-nginx-mysql            latest              2771b96b23f7        3 months ago        162MB
+grafana/grafana                          latest              9ad3ce931acd        4 months ago        180MB
+zabbix/zabbix-java-gateway               latest              107eb2ac0c67        4 months ago        81.5MB
+ubuntu                                   latest              4e2eef94cd6b        4 months ago        73.9MB
+nginx                                    alpine              6f715d38cfe0        4 months ago        22.1MB
+logstash                                 7.9.0               053e8d41a6b3        4 months ago        733MB
+kibana                                   7.9.0               6f6c0975b647        4 months ago        1.17GB
+elasticsearch                            7.9.0               0eddd30d8bdf        4 months ago        762MB
+prom/prometheus                          latest              b205ccdd28d3        4 months ago        145MB
+mysql                                    5.6                 1d3d3845393d        4 months ago        302MB
+mysql                                    latest              0d64f46acfd1        4 months ago        544MB
+quay.io/prometheus/busybox-linux-amd64   latest              0002407bd040        6 months ago        2.64MB
+prom/alertmanager                        latest              c876f5897d7b        6 months ago        55.5MB
+prom/node-exporter                       latest              0e0218889c33        6 months ago        26.4MB
+alpine                                   latest              a24bb4013296        6 months ago        5.57MB
+alpine                                   3.11                f70734b6a266        8 months ago        5.61MB
+google/cadvisor                          latest              eb1210707573        2 years ago         69.6MB
+mysql                                    5.7                 9e64176cd8a2        3 years ago         407MB
+root@managenode:~#
+root@managenode:~#
+root@managenode:~# docker run --name mysql-server -t -e MYSQL_DATABASE="zabbix" -e MYSQL_USER="zabbix" -e MYSQL_PASSWORD="Asdf123!" -e MYSQL_ROOT_PASSWORD="YjA0OTYwZDBiN2EwNWFjMTRjZGU3Yjcy" -d mysql --character-set-server=utf8 --collation-server=utf8_bin --default-authentication-plugin=mysql_native_password
+1f6e5d8a4a4be7c11da44fb5fbf9d9ce7b15d702cb2607cf2a237c3cf84b44ad
+root@managenode:~#
+root@managenode:~#
+root@managenode:~# docker run --name zabbix-java-gateway -t --restart unless-stopped -d zabbix/zabbix-java-gateway
+834db96583143422f7d8aa1a92e46dc9265daf65e7df6d44a84d345065b11fd1
+root@managenode:~#
+root@managenode:~#
+root@managenode:~# docker run --name zabbix-server-mysql -t -e DB_SERVER_HOST="mysql-server" -e MYSQL_DATABASE="zabbix" -e MYSQL_USER="zabbix" -e MYSQL_PASSWORD="Asdf123!" -e MYSQL_ROOT_PASSWORD="YjA0OTYwZDBiN2EwNWFjMTRjZGU3Yjcy" -e ZBX_JAVAGATEWAY="zabbix-java-gateway" --link mysql-server:mysql --link zabbix-java-gateway:zabbix-java-gateway -p 10051:10051 --restart unless-stopped -d zabbix/zabbix-server-mysql
+13f5d76493d8f96e3345b0f22eaa1ef88c43cd8f8350d12d0b6d435b41640c28
+root@managenode:~#
+root@managenode:~#
+root@managenode:~#
+root@managenode:~# docker run --name zabbix-web-nginx-mysql -t -e DB_SERVER_HOST="mysql-server" -e MYSQL_DATABASE="zabbix" -e MYSQL_USER="zabbix" -e MYSQL_PASSWORD="Asdf123!" -e MYSQL_ROOT_PASSWORD="YjA0OTYwZDBiN2EwNWFjMTRjZGU3Yjcy" --link mysql-server:mysql --link zabbix-server-mysql:zabbix-server -p 80:8080 --restart unless-stopped -d zabbix/zabbix-web-nginx-mysql
+6b681a16b16cbe7c9eabf2a719711f52e47f64dd0c5463de1893af2321f6f54c
+root@managenode:~#
+root@managenode:~#
+root@managenode:~# docker run --name zabbix-agent --link mysql-server:mysql --link zabbix-server-mysql:zabbix-server -e ZBX_HOSTNAME="Zabbix server" -e ZBX_SERVER_HOST="zabbix-server" -d zabbix/zabbix-agent
+8fe261f92c8ce8a05e705f067d0b36d4b6bd821a0617e2827f0ecfd86b88d6e5
+root@managenode:~#
+root@managenode:~#
+root@managenode:~#
+root@managenode:~# docker ps
+CONTAINER ID        IMAGE                           COMMAND                  CREATED              STATUS              PORTS                            NAMES
+8fe261f92c8c        zabbix/zabbix-agent             "/sbin/tini -- /usr/…"   11 seconds ago       Up 10 seconds       10050/tcp                        zabbix-agent
+6b681a16b16c        zabbix/zabbix-web-nginx-mysql   "docker-entrypoint.sh"   59 seconds ago       Up 59 seconds       8443/tcp, 0.0.0.0:80->8080/tcp   zabbix-web-nginx-mysql
+13f5d76493d8        zabbix/zabbix-server-mysql      "/sbin/tini -- /usr/…"   About a minute ago   Up About a minute   0.0.0.0:10051->10051/tcp         zabbix-server-mysql
+834db9658314        zabbix/zabbix-java-gateway      "docker-entrypoint.s…"   2 minutes ago        Up 2 minutes        10052/tcp                        zabbix-java-gateway
+1f6e5d8a4a4b        mysql                           "docker-entrypoint.s…"   2 minutes ago        Up 2 minutes        3306/tcp, 33060/tcp              mysql-server
+4aa41005b533        mysql:5.7                       "docker-entrypoint.s…"   4 weeks ago          Up 4 weeks          0.0.0.0:1234->3306/tcp           mysql_tla_5.7
+45600df8a718        httpd:alpine                    "httpd-foreground"       6 weeks ago          Up 6 weeks          0.0.0.0:2222->80/tcp             web-2
+1d5b158a4f10        nginx:alpine                    "/docker-entrypoint.…"   6 weeks ago          Up 5 weeks          0.0.0.0:1111->80/tcp             web-1
+ceeea2dbaaf2        prom/prometheus                 "/bin/prometheus --c…"   3 months ago         Up 3 months         0.0.0.0:9090->9090/tcp           prometheus
+30ee85f0702e        prom/alertmanager               "/bin/alertmanager -…"   3 months ago         Up 3 months         0.0.0.0:9093->9093/tcp           alertmanager
+5b4ab747b0a6        google/cadvisor                 "/usr/bin/cadvisor -…"   3 months ago         Up 3 months         0.0.0.0:8081->8080/tcp           cadvisor
+e3b22a568b5d        prom/node-exporter              "/bin/node_exporter …"   3 months ago         Up 3 months         0.0.0.0:9100->9100/tcp           node-exporter
+57a1bd23cebe        grafana/grafana                 "/run.sh"                3 months ago         Up 6 weeks          0.0.0.0:3000->3000/tcp           grafana
+root@managenode:~#
+root@managenode:~#
+root@managenode:~#
+root@managenode:~# docker inspect zabbix-agent | grep "IPAddress\": "
+            "IPAddress": "172.17.0.11",
+                    "IPAddress": "172.17.0.11",
+root@managenode:~#
+root@managenode:~#
+root@managenode:~#
+
