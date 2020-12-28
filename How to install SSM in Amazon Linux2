@@ -1,0 +1,19 @@
+@@@How to install SSM session manager agent on amazon linux 2
+
+# mkdir /tmp/ssm
+
+# curl https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/linux_amd64/amazon-ssm-agent.rpm -o /tmp/ssm/amazon-ssm-agent.rpm
+
+# sudo yum install -y /tmp/ssm/amazon-ssm-agent.rpm
+
+# sudo systemctl stop amazon-ssm-agent
+
+
+============================================================
+@@ Create IAM Roles for SSM premission access policy.
+
+@@ And Then attach IAM roles if you manage ec2 instance 
+
+Ref::: https://medium.com/@kumargaurav1247/aws-ssm-ec2-setup-on-premise-setup-e5f1914271aa
+       
+       https://dzone.com/articles/improving-systems-management-with-aws-systems-mana
