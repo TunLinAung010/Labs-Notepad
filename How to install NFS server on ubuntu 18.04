@@ -14,7 +14,7 @@ How to install nfs server on ubuntu 18.04
 
 # vim /etc/exports
 
-add   <<<  /mnt/nfs_share  192.168.43.0/24(rw,sync,no_subtree_check)  >>
+add   <<<  /mnt/nfs_share  IP/24(rw,sync,no_subtree_check)  >>
 
 # exportfs -a
 
