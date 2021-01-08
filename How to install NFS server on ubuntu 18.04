@@ -1,0 +1,22 @@
+
+How to install nfs server on ubuntu 18.04
+==========================================================
+
+# apt update
+
+# apt install nfs-kernel-server
+
+# mkdir -p /mnt/nfs_share
+
+# chown -R nobody:nogroup /mnt/nfs_share/
+
+# chmod 777 /mnt/nfs_share/
+
+# vim /etc/exports
+
+add   <<<  /mnt/nfs_share  192.168.43.0/24(rw,sync,no_subtree_check)  >>
+
+# exportfs -a
+
+Ref:: https://www.tecmint.com/install-nfs-server-on-ubuntu/
+
