@@ -1,9 +1,20 @@
+using nginx on ubuntu 20.04
+================================================================================================
+
+apt update
+
+apt install docker.io
+
+apt install nginx
 
 docker ps
 
 /etc/nginx/sites-available/bat.conf
 
 cat bat.conf
+
+=============================================================================================================================
+
 upstream bat_api {
  server 3.16.130.158:8081;
 }
@@ -73,3 +84,19 @@ server {
 
 
 }
+
+====================================================================================================================
+
+ln -s /etc/sites-available/bat.conf /etc/sites-enabled-bat.conf
+
+nginx -t
+
+nginx -s reload 
+
+curl https://bat.sillx.ml 
+
+curl https://bat.sillx.ml/api
+
+curl https://bat.sillx.ml/workportal
+
+##GrateWork!!!
