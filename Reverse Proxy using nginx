@@ -1,0 +1,75 @@
+
+docker ps
+
+/etc/nginx/sites-available/bat.conf
+
+cat bat.conf
+upstream bat_api {
+ server 3.16.130.158:8081;
+}
+
+upstream bat_dashboard {
+ server 3.16.130.158:8082;
+}
+
+upstream bat_workportal {
+ server 3.16.130.158:8083;
+}
+
+server {
+    listen       80;
+    server_name  bat.sillx.ml;
+    rewrite     ^   https://$server_name$request_uri? permanent;
+    access_log  /var/log/nginx/log/bat/access.log;
+    error_log  /var/log/nginx/log/bat/error.log;
+    index  index.html index.htm;
+
+
+}
+
+server {
+    listen       443 ssl;
+    server_name  bat.sillx.ml;
+#   ssl on;
+    ssl_certificate /etc/letsencrypt/live/bat.sillx.ml/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/bat.sillx.ml/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+    access_log  /var/log/nginx/log/bat/access.log;
+    error_log  /var/log/nginx/log/bat/error.log;
+    index  index.html index.htm;
+
+    location / {
+     proxy_pass  http://bat_dashboard;
+     proxy_next_upstream error timeout invalid_header http_500 http_502 http_503 http_504;
+     proxy_redirect off;
+     proxy_buffering off;
+     proxy_set_header        Host            $host;
+     proxy_set_header        X-Real-IP       $remote_addr;
+     proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
+   }
+
+    location /api/ {
+     proxy_pass  http://bat_api/;
+     proxy_next_upstream error timeout invalid_header http_500 http_502 http_503 http_504;
+     proxy_redirect off;
+     proxy_buffering off;
+     proxy_set_header        Host            $host;
+     proxy_set_header        X-Real-IP       $remote_addr;
+     proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
+   }
+
+    location /workportal/ {
+     proxy_pass  http://bat_workportal/;
+     proxy_next_upstream error timeout invalid_header http_500 http_502 http_503 http_504;
+     proxy_redirect off;
+     proxy_buffering off;
+     proxy_set_header        Host            $host;
+     proxy_set_header        X-Real-IP       $remote_addr;
+     proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
+   }
+
+
+
+}
