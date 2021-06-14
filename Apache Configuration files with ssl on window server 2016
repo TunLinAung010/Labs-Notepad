@@ -1,0 +1,20 @@
+
+Add this code to httpd-ssl
+ 
+SSLCertificateFile "${SRVROOT}/conf/star_sillx_com.crt"
+SSLCertificateKeyFile "${SRVROOT}/conf/sillx_com.key"
+SSLCertificateChainFile "${SRVROOT}/conf/DigiCertCA.crt"
+
+open module (removed # sign)
+search this keyword #SSL
+# Secure (SSL/TLS) connections
+Include conf/extra/httpd-ssl.conf
+
+open moudule (removed # sign)
+search this keyword (mod_socache_shmcb)
+ Maybe you need to load the appropriate socache module (mod_socache_shmcb?).
+
+
+
+
+
