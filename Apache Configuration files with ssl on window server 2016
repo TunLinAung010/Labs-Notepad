@@ -1,3 +1,5 @@
+conf\extra\httpd-ssl
+============================
 
 Add this code to httpd-ssl
  
@@ -5,6 +7,9 @@ SSLCertificateFile "${SRVROOT}/conf/star_sillx_com.crt"
 SSLCertificateKeyFile "${SRVROOT}/conf/sillx_com.key"
 SSLCertificateChainFile "${SRVROOT}/conf/DigiCertCA.crt"
 
+
+IN httpd.conf
+===========================
 open module (removed # sign)
 search this keyword #SSL
 # Secure (SSL/TLS) connections
