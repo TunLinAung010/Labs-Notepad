@@ -1,0 +1,45 @@
+How to install Kubernetes on Ubuntu ( K8s )
+===================================
+
+# apt upate
+
+# apt-get install docker.io    ================>> Previous you need to install container service most of user used docker and install all worker nodes
+
+# curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add   ====================>> ( Install singing Key )
+
+# apt-get install curl
+
+# apt-add-repository "deb http://apt.kubernetes.io/ kubernetes-xenial main" ================>> ( Software Repositories )
+
+# apt-get install kubeadm kubelet kubectl
+
+# apt-mark hold kubeadm kubelet kubectl
+
+# kubeadm version
+
+# swapoff –a  =========>> ( isabling the swap memory on each server )
+
+# hostnamectl set-hostname master-node ===========>> ( Set Hostname )
+
+# hostnamectl set-hostname worker01  =============>> ( Set Hostname )
+
+# kubeadm init --pod-network-cidr=10.244.0.0/16 ============>> ( Set CIRD )
+
+# kubernetes-master:~$ mkdir -p $HOME/.kube
+
+# kubernetes-master:~$ sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+
+# kubernetes-master:~$ sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+# kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+
+# kubectl get pods --all-namespaces
+
+# kubeadm join --discovery-token abcdef.1234567890abcdef --discovery-token-ca-cert-hash sha256:1234..cdef 1.2.3.4:6443
+
+# kubectl get nodes
+
+
+
+
+Refer===>>>>> ( https://phoenixnap.com/kb/install-kubernetes-on-ubuntu )
